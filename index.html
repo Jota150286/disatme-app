@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111820">
+<title>DISATME — Prototipo</title>
+<style>
+*{box-sizing:border-box} body{margin:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:#17202a}
+.app{max-width:480px;margin:auto;min-height:100vh;background:#f8f9fa;padding-bottom:82px}
+header{background:#111820;color:white;padding:18px 18px 22px;border-radius:0 0 24px 24px}
+.brand{font-weight:800;letter-spacing:2px;font-size:20px}.sub{opacity:.7;font-size:12px;margin-top:4px}
+h1{font-size:27px;margin:22px 0 4px}.date{opacity:.7;font-size:13px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.card{background:white;border-radius:16px;padding:15px;box-shadow:0 3px 14px #0000000a}.label{font-size:11px;color:#6b7280}.value{font-size:21px;font-weight:800;margin-top:5px}.green{color:#16834b}.gold{color:#a26b16}.red{color:#c53d3d}
+section{padding:0 16px;margin-top:18px}.sectiontitle{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800;margin-bottom:10px}
+.project{background:white;border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 3px 14px #0000000a}.row{display:flex;justify-content:space-between;gap:10px}.project b{font-size:14px}.small{font-size:12px;color:#6b7280;margin-top:5px}.pill{font-size:10px;padding:5px 8px;border-radius:20px;background:#e8f6ee;color:#16834b;font-weight:700}.pill.warn{background:#fff4dc;color:#a26b16}.progress{height:6px;background:#e8eaed;border-radius:10px;margin-top:11px;overflow:hidden}.bar{height:100%;width:70%;background:#1b8b55;border-radius:10px}
+.task{background:white;border-radius:14px;padding:13px;margin-bottom:8px;display:flex;gap:12px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:#d63d3d}.dot.o{background:#e3a52d}.dot.g{background:#39a96b}.task b{font-size:13px}.task span{display:block;font-size:11px;color:#737b84;margin-top:3px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);height:72px;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;align-items:center;padding-bottom:8px;z-index:5}nav button{border:0;background:none;color:#7b838c;font-size:10px}nav button.active{color:#111820;font-weight:800} .plus{background:#111820!important;color:white!important;width:48px;height:48px;border-radius:50%;font-size:25px!important}
+.view{display:none}.view.active{display:block}
+.toolbar{padding:15px 16px 0}.search{background:white;border:1px solid #e5e7eb;border-radius:13px;padding:12px;width:100%;font-size:14px}
+.back{border:0;background:none;padding:0;font-size:13px;margin-bottom:10px}.metric{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #eee;font-size:13px}.metric b{font-size:14px}
+table{width:100%;border-collapse:collapse;background:white;border-radius:14px;overflow:hidden;font-size:11px}th,td{padding:10px 7px;border-bottom:1px solid #eee;text-align:left}th{color:#6b7280;font-weight:600}
+.chart{background:white;border-radius:16px;padding:15px}.bars{display:flex;align-items:end;height:130px;gap:9px}.vbar{flex:1;background:#2c3741;border-radius:7px 7px 2px 2px}.months{display:flex;gap:9px;font-size:9px;color:#777}.months span{flex:1;text-align:center}
+</style>
+
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DISATME">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand">DISATME</div><div class="sub">Diseño · Fabricación · Transformación</div>
+  <h1 id="title">Buenos días</h1><div class="date">Panel general de tu empresa</div>
+  <div class="cards">
+    <div class="card"><div class="label">Ventas del mes</div><div class="value">$185.400.000</div></div>
+    <div class="card"><div class="label">Utilidad</div><div class="value green">$72.800.000</div></div>
+  </div>
+</header>
+
+<div id="home" class="view active">
+<section><div class="sectiontitle">Proyectos <span class="small">Ver todos</span></div>
+  <div class="project"><div class="row"><div><b>Cocina Apartamento P.H.</b><div class="small">Cliente: Ana García · $18.500.000</div></div><span class="pill">En ejecución</span></div><div class="progress"><div class="bar" style="width:70%"></div></div></div>
+  <div class="project"><div class="row"><div><b>Cocina Torres</b><div class="small">Cliente: Carlos Torres · $32.000.000</div></div><span class="pill warn">Pendiente</span></div><div class="progress"><div class="bar" style="width:45%"></div></div></div>
+</section>
+<section><div class="sectiontitle">Tareas de hoy <span class="small">8 pendientes</span></div>
+  <div class="task"><i class="dot"></i><div><b>Comprar herrajes</b><span>08:00 · Cocina Apartamento P.H. · Crítica</span></div></div>
+  <div class="task"><i class="dot o"></i><div><b>Llamar cliente García</b><span>10:00 · Prioridad alta</span></div></div>
+  <div class="task"><i class="dot g"></i><div><b>Actualizar APU cocina</b><span>16:00 · Prioridad baja</span></div></div>
+</section>
+</div>
+
+<div id="projects" class="view">
+<div class="toolbar"><input class="search" placeholder="🔎  Buscar proyecto..."></div>
+<section><div class="sectiontitle">Todos los proyectos</div>
+<div class="project"><div class="row"><div><b>Cocina Apartamento P.H.</b><div class="small">Venta $18.500.000 · Costo $11.200.000</div></div><span class="pill">70%</span></div></div>
+<div class="project"><div class="row"><div><b>Cocina Torres</b><div class="small">Venta $32.000.000 · Costo pendiente</div></div><span class="pill warn">45%</span></div></div>
+<div class="project"><div class="row"><div><b>Closet Habitación</b><div class="small">Venta $12.800.000 · Terminado</div></div><span class="pill">100%</span></div></div>
+</section>
+</div>
+
+<div id="apu" class="view">
+<section><div class="sectiontitle">APU — Cocina Apartamento P.H.</div>
+<table><tr><th>Recurso</th><th>Cant.</th><th>Total</th></tr>
+<tr><td>RH Fresno Europeo</td><td>8,5 m²</td><td>$2.720.000</td></tr>
+<tr><td>Herrajes</td><td>12 und</td><td>$1.020.000</td></tr>
+<tr><td>Cubierta sinterizada</td><td>4,2 m²</td><td>$1.890.000</td></tr>
+<tr><td>Mano de obra</td><td>20 h</td><td>$900.000</td></tr>
+<tr><td>Transporte</td><td>1</td><td>$600.000</td></tr>
+</table>
+<div class="card" style="margin-top:12px"><div class="metric"><span>Costo directo</span><b>$8.310.000</b></div><div class="metric"><span>Costos indirectos</span><b>$1.246.500</b></div><div class="metric"><span>Costo total</span><b>$11.200.000</b></div><div class="metric"><span>Precio de venta</span><b>$18.500.000</b></div><div class="metric"><span>Utilidad</span><b class="green">$7.300.000 · 39,46%</b></div></div>
+</section>
+</div>
+
+<div id="tasks" class="view">
+<section><div class="sectiontitle">Tareas y calendario</div>
+<div class="task"><i class="dot"></i><div><b>Comprar herrajes</b><span>Hoy · 08:00 · Crítica</span></div></div>
+<div class="task"><i class="dot o"></i><div><b>Revisar medidas</b><span>Hoy · 14:00 · Media</span></div></div>
+<div class="task"><i class="dot g"></i><div><b>Enviar cotización</b><span>Mañana · Normal</span></div></div>
+<div class="card" style="margin-top:14px"><b>🎙️ Comando Siri</b><div class="small" style="font-size:13px;line-height:1.5">“Oye Siri, dile a DISATME que mañana debo llamar al proveedor de herrajes.”</div></div>
+</section>
+</div>
+
+<div id="reports" class="view">
+<section><div class="sectiontitle">Gráficos y reportes</div>
+<div class="chart"><b>Ventas mensuales</b><div class="bars">
+<div class="vbar" style="height:55%"></div><div class="vbar" style="height:65%"></div><div class="vbar" style="height:75%"></div><div class="vbar" style="height:68%"></div><div class="vbar" style="height:83%"></div><div class="vbar" style="height:100%"></div>
+</div><div class="months"><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span></div></div>
+<div class="card" style="margin-top:12px"><div class="metric"><span>Utilidad promedio</span><b class="green">39,2%</b></div><div class="metric"><span>Cartera pendiente</span><b class="red">$48.600.000</b></div><div class="metric"><span>Proyectos activos</span><b>12</b></div></div>
+</section>
+</div>
+
+<nav>
+<button onclick="show('home',this)" class="active">⌂<br>Inicio</button>
+<button onclick="show('projects',this)">▣<br>Proyectos</button>
+<button class="plus" onclick="alert('Nuevo: Proyecto · Tarea · Cliente · APU · Pago')">+</button>
+<button onclick="show('tasks',this)">✓<br>Tareas</button>
+<button onclick="show('reports',this)">▥<br>Reportes</button>
+</nav>
+</div>
+<script>
+function show(id,btn){
+ document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+ if(btn) btn.classList.add('active');
+ window.scrollTo(0,0);
+}
+</script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}</script></body></html>
